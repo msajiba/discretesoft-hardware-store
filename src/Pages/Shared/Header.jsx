@@ -21,6 +21,7 @@ const Header = () => {
                     <li><Link className='hover:text-secondary' to='/'> Blog </Link></li>
                     { 
                         user?.email ?  <>   
+                                            <li><Link className='hover:text-secondary' to='/dashboard'> Dashboard </Link></li>
                                             <li> <button className='bg-transparent cursor-default' > <UserCircleIcon  className='w-8' /> {user.displayName} </button> </li> 
                                             <li> <button className='text-red-500' onClick={logOut}> Sign Out </button> </li> 
                                         </>
