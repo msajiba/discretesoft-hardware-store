@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
@@ -38,8 +38,10 @@ const Login = () => {
     };
 
     if(user || gUser){
-        navigate(from, { replace: true });
-    };
+         navigate(from, { replace: true });
+     };
+
+    
 
 
     const onSubmit = async(data) => {

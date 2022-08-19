@@ -9,7 +9,6 @@ module.exports = {
     
     themes: [
       "light",
-      'dark',
       {
         hardwareTheme: {
           primary: "#202447",
@@ -23,5 +22,6 @@ module.exports = {
   theme: {
     extend: {},
   },
+  
   plugins: [require("daisyui")],
 }

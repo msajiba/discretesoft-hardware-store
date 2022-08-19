@@ -8,6 +8,7 @@ import Register from './Pages/Auth/Register';
 import Header from './Pages/Shared/Header';
 import Footer from './Pages/Shared/Footer';
 import RequireAuth from './Pages/Auth/RequireAuth';
+import Purchase from './Pages/Purchase/Purchase';
 
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
             <Header />
 
               <Routes>
-                  <Route path='/' element={ <RequireAuth> <Home /> </RequireAuth> } > </Route>
+                  <Route path='/' element={  <Home />  } > </Route>
+                  <Route path='purchase/:id' element={ <RequireAuth> <Purchase /> </RequireAuth> } > </Route>
                   <Route path='login' element={<Login />} > </Route>
                   <Route path='register' element={<Register />} > </Route>
               </Routes>

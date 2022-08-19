@@ -3,6 +3,7 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../Firebase/Firebase';
+import { BeakerIcon, UserCircleIcon, } from '@heroicons/react/solid'
 
 const Header = () => {
 
@@ -12,13 +13,17 @@ const Header = () => {
         signOut(auth);
     }
 
+  
 
     const menu = <>
     
                     <li><Link className='hover:text-secondary' to='/'> Home </Link></li>
                     <li><Link className='hover:text-secondary' to='/'> Blog </Link></li>
                     { 
-                        user?.email ?  <li> <button onClick={logOut}> Sign Out </button> </li> 
+                        user?.email ?  <>   
+                                            <li> <button className='bg-transparent cursor-default' > <UserCircleIcon  className='w-8' /> {user.displayName} </button> </li> 
+                                            <li> <button className='text-red-500' onClick={logOut}> Sign Out </button> </li> 
+                                        </>
                                     :  <li><Link className='hover:text-secondary' to='/login'> Login </Link></li> 
                     }
     
