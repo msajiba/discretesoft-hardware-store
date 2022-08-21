@@ -3,22 +3,27 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../Firebase/Firebase';
-import { BeakerIcon, UserCircleIcon, } from '@heroicons/react/solid'
+import { UserCircleIcon, } from '@heroicons/react/solid'
+import useAdmin from '../hooks/useAdmin';
+
 
 const Header = () => {
 
     const [user] = useAuthState(auth);
 
+    
+
+
     const logOut = () => {
         signOut(auth);
+        localStorage.removeItem('accessToken');
     }
-
-  
 
     const menu = <>
     
                     <li><Link className='hover:text-secondary' to='/'> Home </Link></li>
                     <li><Link className='hover:text-secondary' to='/'> Blog </Link></li>
+
                     { 
                         user?.email ?  <>   
                                             <li><Link className='hover:text-secondary' to='/dashboard'> Dashboard </Link></li>
@@ -45,7 +50,7 @@ const Header = () => {
                         {menu}
                     </ul>
                 </div>
-                <p className="normal-case text-xl"> Discretesoft <br /> <span className='text-secondary text-sm '> Hardware Store </span></p>
+                <p className="normal-case text-xl text-white"> Discretesoft <br /> <span className='text-secondary text-sm '> Hardware Store </span></p>
             </div>
 
             <div className="navbar-end">

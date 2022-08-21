@@ -4,7 +4,9 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../Firebase/Firebase';
+import useToken from '../hooks/useToken';
 import Loader from '../Shared/Loader';
+
 
 
 const Login = () => {
@@ -29,6 +31,8 @@ const Login = () => {
 
     const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth);
 
+    const [token] = useToken(user || gUser);
+
     if(loading || gLoading || sending){
         return <Loader />
     };
@@ -37,12 +41,11 @@ const Login = () => {
         errors = error?.message || gError?.message || resetError?.message;
     };
 
-    if(user || gUser){
-         navigate(from, { replace: true });
-     };
+    if(token){
+        navigate(from, { replace: true });
+    };
 
-    
-
+   
 
     const onSubmit = async(data) => {
         const email = data.email;

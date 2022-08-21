@@ -24,8 +24,8 @@ const MyOrders = () => {
     return (
 
 
-        <div class="overflow-x-auto">
-            <table class="table table-zebra w-full">
+        <div className="overflow-x-auto">
+            <table className="table table-zebra w-full">
                 <thead>
                 <tr>
                     <th> # </th>
@@ -33,6 +33,7 @@ const MyOrders = () => {
                     <th> Quality </th>
                     <th> Price </th>
                     <th> Action </th>
+                    <th> Payment </th>
                 </tr>
                 </thead>
                 <tbody>

@@ -1,13 +1,15 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../Firebase/Firebase';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import Loader from '../Shared/Loader';
 import { errorPrefix } from '@firebase/util';
+import useToken from '../hooks/useToken';
 
 const Register = () => {
 
+    const navigate = useNavigate();
     const { register, handleSubmit, reset } = useForm();
    
     let errors;
@@ -21,12 +23,14 @@ const Register = () => {
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
+    const [token] = useToken(user || gUser)
+
     if(loading || updating || gLoading){
         return <Loader />
     };
 
-    if(user || gUser){
-        console.log(user || gUser);
+    if(token){
+        navigate('/')
     }
 
     if(error || updateError || gError){

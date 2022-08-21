@@ -22,15 +22,15 @@ const OrderDeleteModal = ({showDelete, setShowDelete, refetch}) => {
     return (
         <>
             
-            <input type="checkbox" id="order-delete-modal" class="modal-toggle" />
-                <div class="modal">
-                <div class="modal-box relative">
-                    <h3 class="text-lg font-bold"> Are you sure delete <span className='text-info'> {name} </span> order ? </h3>
+            <input type="checkbox" id="order-delete-modal" className="modal-toggle" />
+                <div className="modal">
+                <div className="modal-box relative">
+                    <h3 className="text-lg font-bold"> Are you sure delete <span className='text-info'> {name} </span> order ? </h3>
                     <div className="text-end mt-10">
                         <button 
                             onClick={()=>handleDeleteOrder(_id)}
-                            class="btn btn-xs btn-error mx-2"> Delete </button>
-                        <label for="order-delete-modal" class="btn btn-xs"> Cancel </label>
+                            className="btn btn-xs btn-error mx-2"> Delete </button>
+                        <label htmlFor="order-delete-modal" className="btn btn-xs"> Cancel </label>
                     </div>
                 </div>
             </div>
