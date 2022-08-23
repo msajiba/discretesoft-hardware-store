@@ -21,7 +21,7 @@ const OrderRow = ({order, index, setShowDelete}) => {
             <td> 
 
                { (totalPrice && !paid) && <button onClick={()=> navigate(`/payment/${_id}`)}  className='btn btn-info btn-xs'> Pay</button> }
-               { (totalPrice && paid) && <button className='btn btn-success'> Paid</button> }
+               { (totalPrice && paid) && <button className='btn btn-success btn-xs'> Paid</button> }
 
             </td>
         </tr>

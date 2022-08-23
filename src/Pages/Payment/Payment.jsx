@@ -1,16 +1,15 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import {useQuery} from 'react-query';
-import axios from 'axios';
 import Loader from '../Shared/Loader';
-import { Elements } from '@stripe/react-stripe-js';
+import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from './CheckoutForm';
 import axiosPrivate from '../api/axiosPrivate';
 
 
 
-const stripePromise = loadStripe('pk_test_51LWZkbIsl7sYqXtenLYtf47U3mBAiuWxPRwNXgFbjaMp5Cd5DX9gH3supi7ZacBObUAHokBU7VzsHM2asmfPyePn00sfWD2Vom');
+const stripePromise = loadStripe('pk_test_51La0RWJjr0c2qOrY21Ump1jIEx6QZVnGY9BLgK0JuA6lra7u2adr4wnOK6b7R1UeiaU7ImK60WRc4nOO3Mz1ZCws00T6DoVZhQ');
 
 
 const Payment = () => {

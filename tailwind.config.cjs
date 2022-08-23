@@ -6,16 +6,18 @@ module.exports = {
   ],
 
   daisyui: {
-    
     themes: [
-      "light",
       {
-        hardwareTheme: {
-          primary: "#202447",
+        doctortheme: {
+          primary: "#0FCFEC",
           secondary: "#FAB915",
+          accent: "#202447",
+          neutral: "#3d4451",
+          "base-100": "#ffffff",
         },
       },
-     
+      "dark",
+      "cupcake",
     ],
   },
 
@@ -25,3 +27,4 @@ module.exports = {
   
   plugins: [require("daisyui")],
 }
+

@@ -1,46 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
-import axios from 'axios';
+import axiosPrivate from '../api/axiosPrivate';
+
 
 const CheckoutForm = ({tools}) => {
 
     const [cardError, setCardError] = useState('');
     const [clientSecret, setClientSecret] = useState("");
+    const [success, setSuccess] = useState("");
+    const [transactionId, setTransactionId] = useState("");
     const stripe = useStripe();
     const elements = useElements();
 
-    const {totalPrice} = tools?.data;
-
+    const {totalPrice, userName, phone, name, email, _id} = tools?.data;
 
     useEffect(()=> {
 
-        fetch('http://localhost:5000/create-payment-intent', {
-            method : 'POST',
-            headers: {
-                'content-type': 'application/json',
-                
-            },
-            body:JSON.stringify({totalPrice})
-        })
-        .then(res=> res.json())
-        .then(data=> {
-            console.log(data);
-        });
+        const url = 'http://localhost:5000/create-payment-intent';
+        const getSecret = async()=> {
+            const {data} = await axiosPrivate.post(url, {totalPrice})
+            if(data?.clientSecret){
+                setClientSecret(data.clientSecret);
+            };
+        }
 
-      
-    }, [])
+        getSecret()
+
+    }, [totalPrice]);
+
+
 
 
     const handleSubmit = async(event) => {
+
         event.preventDefault();
 
-        if(!stripe || !elements){
+        if(!stripe || !elements){ 
             return;
         };
 
         const card = elements.getElement(CardElement);
 
-        if (card == null) {
+        if (card === null) {
             return;
         };
 
@@ -50,8 +51,47 @@ const CheckoutForm = ({tools}) => {
         });
       
         {setCardError(error) || '' };
+        setSuccess('')
 
-      
+        //Confirm card payment --------->
+
+        const {paymentIntent, error:intentError} = await stripe.confirmCardPayment(
+            clientSecret,
+            {
+              payment_method: {
+                card: card,
+                billing_details: {
+                  name: userName,
+                  email: email
+                },
+              },
+            },
+        );
+
+        if(intentError){
+            setCardError(intentError.message)
+        }
+        else{
+            setCardError('')
+            setTransactionId(paymentIntent.id)
+            setSuccess('Congress! Your payment is success');
+
+            //Send database patch to transactionId
+
+            const payment ={
+                bookingId : _id,
+                transactionId: paymentIntent?.id
+            };
+
+            const url = `http://localhost:5000/booking/${_id}`;
+
+            const patchPayment = async()=> {
+                const {data} = await axiosPrivate.patch(url, payment );
+            };
+            patchPayment();
+
+
+        };
 
     };
 
@@ -76,13 +116,20 @@ const CheckoutForm = ({tools}) => {
                         },
                     }}
                 />
-                <button type="submit" className='btn btn-info btn-xs mt-5' disabled={!stripe}>
-                Pay
+                <button type="submit" className='btn btn-info btn-xs mt-5' disabled={!stripe || !clientSecret}>
+                    Pay
                 </button>
         </form>
 
             {
                 cardError && <p className='text-red-500'> {cardError?.message} </p>
+            }
+
+            {
+                success && <>
+                            <p className='text-green-500'> {success} </p>
+                            <p className='text-info'> transactionId : {transactionId} </p>
+                          </>
             }
 
         </>

@@ -63,7 +63,7 @@ const Header = () => {
                 </div>
             </div>
 
-            <div className="navbar-center hidden lg:flex text-slate-100 font-semibold md:text-lg">
+            <div className="navbar-center hidden lg:flex text-white font-semibold md:text-lg">
                 <ul className="menu menu-horizontal p-0">
                     {menu}
                 </ul>
