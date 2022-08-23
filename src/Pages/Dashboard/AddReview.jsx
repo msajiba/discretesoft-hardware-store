@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import auth from '../../Firebase/Firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import axios from 'axios';
 import {toast} from 'react-toastify';
+import axiosPrivate from '../api/axiosPrivate';
 
 
 const AddReview = () => {
@@ -21,7 +21,7 @@ const AddReview = () => {
         const reviewInfo = {name, company, ratting, description};
 
         const url = `http://localhost:5000/review`
-        const {data} = await axios.post(url, reviewInfo)
+        const {data} = await axiosPrivate.post(url, reviewInfo)
         if(data?.acknowledged){
             toast.success(`Review add successful. Thank you Mr.${user.displayName} `)
         }
@@ -36,7 +36,7 @@ const AddReview = () => {
                     <input type="text" name='name' value={user?.displayName} className="input input-bordered w-full max-w-xs " disabled  />
                     <input type="text" name='company' placeholder="Company Name" className="input input-bordered w-full max-w-xs my-2 " />
                     <select name='ratting' className="select select-bordered w-full max-w-xs my-2">
-                        <option disabled selected > Please Ratting </option>
+                        <option disabled defaultValue > Please Ratting </option>
                         <option value='1'>1</option>
                         <option value='2'>2</option>
                         <option value='3'>3</option>

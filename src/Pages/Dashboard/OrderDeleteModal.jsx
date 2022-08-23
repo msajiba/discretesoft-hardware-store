@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { toast } from 'react-toastify';
+import axiosPrivate from '../api/axiosPrivate';
 
 const OrderDeleteModal = ({showDelete, setShowDelete, refetch}) => {
     const {_id, name, useName} = showDelete;
@@ -9,7 +10,7 @@ const OrderDeleteModal = ({showDelete, setShowDelete, refetch}) => {
         
         const url = `http://localhost:5000/order/${id}`
         
-        const {data} = await axios.delete(url);
+        const {data} = await axiosPrivate.delete(url);
 
         if(data.acknowledged){
             toast.success(`Delete successful ${name}`)

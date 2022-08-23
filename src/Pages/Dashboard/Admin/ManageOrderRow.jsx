@@ -12,7 +12,7 @@ const {email, inputQuantity, userName, totalPrice, name, phone} = order;
             <td> {name} </td>
             <td> {phone} </td>
             <td> {inputQuantity} </td>
-            <td> {totalPrice} </td>
+            <td> ${totalPrice}.00 </td>
          </tr>
     );
 };

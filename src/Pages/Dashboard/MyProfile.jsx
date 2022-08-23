@@ -5,15 +5,15 @@ import { toast } from 'react-toastify';
 import auth from '../../Firebase/Firebase';
 import Loader from '../Shared/Loader';
 import {useQuery} from 'react-query';
+import axiosPrivate from '../api/axiosPrivate';
 
 const MyProfile = () => {
 
     const [user] = useAuthState(auth);
     const email = user?.email;
 
-
     const url = `http://localhost:5000/profile/${email}`
-    const {data:profile, isLoading, refetch} = useQuery(['profile', user], async()=> await axios.get(url))
+    const {data:profile, isLoading, refetch} = useQuery(['profile', user], async()=> await axiosPrivate.get(url))
     
     if(isLoading){
         return <Loader> </Loader>
@@ -34,9 +34,8 @@ const MyProfile = () => {
         const profileInfo = {name, email, education, location, phone, linkdin};
 
         const url = `http://localhost:5000/profile/${email}`
-        const {data} = await axios.put(url, profileInfo)
-        console.log(data);
-        
+        const {data} = await axiosPrivate.put(url, profileInfo)
+
         if(data?.upsertedCount ===1){
             toast.success('Profile Update Successful');
         };
@@ -45,10 +44,6 @@ const MyProfile = () => {
         refetch();
 
     };
-
-
-   
-
 
 
     return (
@@ -63,41 +58,41 @@ const MyProfile = () => {
                             <label className="label">
                                 <span className="label-text"> Your Name </span>
                             </label>
-                            <input type="text" name='name'  value={user.displayName} placeholder="email" className="input input-bordered" required disabled readOnly />
+                            <input type="text" name='name'  defaultValue={user.displayName} placeholder="email" className="input input-bordered" required disabled readOnly />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email Address</span>
                             </label>
-                            <input type="text" name='email' value={user.email} placeholder="password" className="input input-bordered" readOnly disabled required/>
+                            <input type="text" name='email' defaultValue={user.email} placeholder="password" className="input input-bordered" readOnly disabled required/>
                         </div>
 
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text"> Education </span>
                             </label>
-                            <input type="text" value={education} name='education' placeholder="Your School & College" className="input input-bordered" required />
+                            <input type="text" defaultValue={education} name='education' placeholder="Your School & College" className="input input-bordered" required />
                         </div>
 
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text"> Location </span>
                             </label>
-                            <input type="text" value={location} name='location' placeholder="City / District" className="input input-bordered" required />
+                            <input type="text" defaultValue={location} name='location' placeholder="City / District" className="input input-bordered" required />
                         </div>
 
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text"> Phone Number </span>
                             </label>
-                            <input type="number" value={phone} name='phone' placeholder="Enter Your Phone Number" className="input input-bordered" required />
+                            <input type="number" defaultValue={phone} name='phone' placeholder="Enter Your Phone Number" className="input input-bordered" required />
                         </div>
 
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text"> Linkdin Profile </span>
                             </label>
-                            <input type="text" value={linkdin} name='linkdin' placeholder="Linkdin Profile Link" className="input input-bordered" required />
+                            <input type="text" defaultValue={linkdin}  name='linkdin' placeholder="Linkdin Profile Link" className="input input-bordered" required />
                         </div>
 
                         <div className="form-control mt-6">

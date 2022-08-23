@@ -22,7 +22,8 @@ const Header = () => {
     const menu = <>
     
                     <li><Link className='hover:text-secondary' to='/'> Home </Link></li>
-                    <li><Link className='hover:text-secondary' to='/'> Blog </Link></li>
+                    <li><Link className='hover:text-secondary' to='/blog'> Blog </Link></li>
+                    <li><Link className='hover:text-secondary' to='/portfolio'> Portfolio </Link></li>
 
                     { 
                         user?.email ?  <>   

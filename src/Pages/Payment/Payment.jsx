@@ -1,13 +1,56 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import {useQuery} from 'react-query';
+import axios from 'axios';
+import Loader from '../Shared/Loader';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import CheckoutForm from './CheckoutForm';
+import axiosPrivate from '../api/axiosPrivate';
+
+
+
+const stripePromise = loadStripe('pk_test_51LWZkbIsl7sYqXtenLYtf47U3mBAiuWxPRwNXgFbjaMp5Cd5DX9gH3supi7ZacBObUAHokBU7VzsHM2asmfPyePn00sfWD2Vom');
+
 
 const Payment = () => {
 
     const {id} = useParams();
 
+    const url = `http://localhost:5000/orderService/${id}`;
+    const {data:tools, isLoading} = useQuery(['specificTool', id], async()=> await axiosPrivate.get(url));
+
+    
+    if(isLoading){
+        return <Loader> </Loader>
+    };
+    
+    const { name, totalPrice, userName} = tools.data;
+
     return (
-        <div>
-            <h4> Payment for ${id} </h4>
+        <div className="hero min-h-screen bg-base-200">
+            <div className="hero-content flex-col lg:flex-row-reverse">
+
+                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card w-96 bg-base-100 shadow-xl">
+                        <div className="card-body">
+                            <Elements stripe={stripePromise}>
+                                <CheckoutForm tools={tools} />
+                            </Elements>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card w-96 bg-base-100 shadow-xl">
+                        <div className="card-body">
+                            <h2 className="card-title text-info"> Hello, {userName} </h2>
+                            <p> Please Pay for <span className='text-info'> {name} </span> </p>
+                            <p> Please Pay : <span className='text-info'> {totalPrice} </span> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

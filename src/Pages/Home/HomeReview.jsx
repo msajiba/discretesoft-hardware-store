@@ -7,12 +7,13 @@ import { Pagination } from "swiper";
 import axios from "axios";
 import { useQuery } from 'react-query';
 import Loader from "../Shared/Loader";
+import axiosPrivate from "../api/axiosPrivate";
 
 
 const HomeReview = () => {
 
   const url = 'http://localhost:5000/review';
-  const {data:review, isLoading} = useQuery(['review'], async()=> await axios.get(url))
+  const {data:review, isLoading} = useQuery(['review'], async()=> await axiosPrivate.get(url))
 
   if(isLoading){
     return <Loader> </Loader>

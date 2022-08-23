@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React from 'react';
 import { useQuery } from 'react-query'
+import axiosPrivate from '../api/axiosPrivate';
 import Loader from '../Shared/Loader';
 import ToolsRow from './ToolsRow';
 
 const HomeTools = () => {
 
     const url = 'http://localhost:5000/services'
-    const {data:tools, isLoading} = useQuery(['tools'], async()=> await axios.get(url));
+    const {data:tools, isLoading} = useQuery(['tools'], async()=> await axiosPrivate.get(url));
 
     if(isLoading){
         return <Loader> </Loader>

@@ -6,6 +6,7 @@ import Loader from '../Shared/Loader';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/Firebase';
 import { toast } from 'react-toastify';
+import axiosPrivate from '../api/axiosPrivate';
 
 
 const Purchase = () => {
@@ -16,8 +17,9 @@ const Purchase = () => {
     const {id} = useParams();
 
     const url = `http://localhost:5000/service/${id}`;
-    const {data, isLoading} = useQuery(['tool', id], async()=> await axios(url));
+    const {data, isLoading} = useQuery(['tool', id], async()=> await axiosPrivate.get(url));
 
+  
     if(isLoading){
         return <Loader> </Loader>
     };
@@ -51,7 +53,7 @@ const Purchase = () => {
             const orderInfo = {name, userName, email, phone, address, inputQuantity, totalPrice};
             
             const postOrder = async() => {
-                const {data} = await axios.post('http://localhost:5000/order', orderInfo);
+                const {data} = await axiosPrivate.post('http://localhost:5000/order', orderInfo);
                 if(data?.acknowledged){
                     toast.success(`Your ${name} order complete`);
                 }

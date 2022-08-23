@@ -6,6 +6,7 @@ import axios from 'axios';
 import Loader from '../Shared/Loader';
 import OrderRow from './OrderRow';
 import OrderDeleteModal from './OrderDeleteModal';
+import axiosPrivate from '../api/axiosPrivate';
 
 const MyOrders = () => {
 
@@ -13,10 +14,10 @@ const MyOrders = () => {
     const [user] = useAuthState(auth);
     const email = user?.email;
 
-    const url = `http://localhost:5000/order?email=${email}`;
+    const url = `http://localhost:5000/order/${email}`;
 
-    const {data:orders, isLoading, refetch} = useQuery(['order', user], async()=> await axios.get(url));
-
+    const {data:orders, isLoading, refetch} = useQuery(['order', user], async()=> await axiosPrivate.get(url));
+    
     if(isLoading){
         return <Loader> </Loader>
     };

@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const OrderRow = ({order, index, setShowDelete}) => {
+    
     const {name, totalPrice, inputQuantity, paid, _id} = order;
 
     const navigate = useNavigate();
@@ -19,8 +20,8 @@ const OrderRow = ({order, index, setShowDelete}) => {
 
             <td> 
 
-               {    (totalPrice && !paid) && <button onClick={()=> navigate(`/payment/${_id}`)}  className='btn btn-info btn-xs'> Pay</button>  }
-               {    (totalPrice && paid) && <button className='btn btn-success'> Paid</button>  }
+               { (totalPrice && !paid) && <button onClick={()=> navigate(`/payment/${_id}`)}  className='btn btn-info btn-xs'> Pay</button> }
+               { (totalPrice && paid) && <button className='btn btn-success'> Paid</button> }
 
             </td>
         </tr>
