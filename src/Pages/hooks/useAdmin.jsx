@@ -8,7 +8,7 @@ const useAdmin = user => {
     const [adminLoading, setAdminLoading] = useState(true);
     const email = user?.email;
 
-    const url = `http://localhost:5000/admin/${email}`
+    const url = `https://discretesoft-hardware.herokuapp.com/admin/${email}`
     
     useEffect(()=> {
 

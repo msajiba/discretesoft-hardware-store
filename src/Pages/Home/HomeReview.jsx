@@ -12,7 +12,7 @@ import axiosPrivate from "../api/axiosPrivate";
 
 const HomeReview = () => {
 
-  const url = 'http://localhost:5000/review';
+  const url = 'https://discretesoft-hardware.herokuapp.com/review';
   const {data:review, isLoading} = useQuery(['review'], async()=> await axiosPrivate.get(url))
 
   if(isLoading){
@@ -48,8 +48,8 @@ const HomeReview = () => {
         className="mySwiper"
       >
 
-
           { 
+          
             review.data.map(rev =>   <SwiperSlide key={rev._id} className=' rounded-full mx-20 reverse '>
                                         <div>
                                           <div className="avatar">
@@ -65,8 +65,6 @@ const HomeReview = () => {
                               )
           }
 
-                  
-        
       </Swiper>
     </>
     );

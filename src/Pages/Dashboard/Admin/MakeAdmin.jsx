@@ -10,7 +10,7 @@ const MakeAdmin = () => {
         e.preventDefault();
         const email = e.target.email.value;
         
-        const url = `http://localhost:5000/user/admin/${email}`
+        const url = `https://discretesoft-hardware.herokuapp.com/user/admin/${email}`
 
         const {data} = await axiosPrivate.put(url);
 

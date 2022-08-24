@@ -16,7 +16,7 @@ const Purchase = () => {
     const [quantityError, setQuantityError] = useState('');
     const {id} = useParams();
 
-    const url = `http://localhost:5000/service/${id}`;
+    const url = `https://discretesoft-hardware.herokuapp.com/service/${id}`;
     const {data, isLoading} = useQuery(['tool', id], async()=> await axiosPrivate.get(url));
 
   
@@ -53,7 +53,7 @@ const Purchase = () => {
             const orderInfo = {name, userName, email, phone, address, inputQuantity, totalPrice};
             
             const postOrder = async() => {
-                const {data} = await axiosPrivate.post('http://localhost:5000/order', orderInfo);
+                const {data} = await axiosPrivate.post('https://discretesoft-hardware.herokuapp.com/order', orderInfo);
                 if(data?.acknowledged){
                     toast.success(`Your ${name} order complete`);
                 }

@@ -20,7 +20,7 @@ const AddReview = () => {
 
         const reviewInfo = {name, company, ratting, description};
 
-        const url = `http://localhost:5000/review`
+        const url = `https://discretesoft-hardware.herokuapp.com/review`
         const {data} = await axiosPrivate.post(url, reviewInfo)
         if(data?.acknowledged){
             toast.success(`Review add successful. Thank you Mr.${user.displayName} `)

@@ -14,7 +14,7 @@ const ManageOrder = () => {
     const email = user?.email;
     const [modalOrder, setModalOrder] = useState(null);
 
-    const url = `http://localhost:5000/allOrder?email=${email}`;
+    const url = `https://discretesoft-hardware.herokuapp.com/allOrder?email=${email}`;
     const {data:orders, isLoading, refetch} = useQuery(['orders'], async()=> await axiosPrivate.get(url));
 
     if(isLoading){

@@ -6,7 +6,7 @@ const ManageProductModal = ({product, setProduct, refetch}) => {
     const {name, img, _id} = product;
 
     const deleteProduct = async() =>{
-        const url = `http://localhost:5000/product/${_id}`;
+        const url = `https://discretesoft-hardware.herokuapp.com/product/${_id}`;
 
         const {data} = await axiosPrivate.delete(url);
         if(data.acknowledged){

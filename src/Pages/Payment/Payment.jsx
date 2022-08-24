@@ -16,7 +16,7 @@ const Payment = () => {
 
     const {id} = useParams();
 
-    const url = `http://localhost:5000/orderService/${id}`;
+    const url = `https://discretesoft-hardware.herokuapp.com/orderService/${id}`;
     const {data:tools, isLoading} = useQuery(['specificTool', id], async()=> await axiosPrivate.get(url));
 
     

@@ -9,7 +9,7 @@ const ManageProduct = () => {
 
     const [product, setProduct] = useState(null);
 
-    const url = 'http://localhost:5000/services';
+    const url = 'https://discretesoft-hardware.herokuapp.com/services';
     const {data:products, isLoading, refetch} = useQuery(['tools'], async()=> await axiosPrivate.get(url));
 
     if(isLoading){

@@ -14,7 +14,7 @@ const MyOrders = () => {
     const [user] = useAuthState(auth);
     const email = user?.email;
 
-    const url = `http://localhost:5000/order/${email}`;
+    const url = `https://discretesoft-hardware.herokuapp.com/order/${email}`;
 
     const {data:orders, isLoading, refetch} = useQuery(['order', user], async()=> await axiosPrivate.get(url));
     

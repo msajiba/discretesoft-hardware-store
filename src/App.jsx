@@ -22,9 +22,15 @@ import Blog from './Pages/Blog/Blog';
 import Portfolio from './Pages/Portfolio/Portfolio';
 import NotFound from './Pages/NotFound/NotFound';
 import RequireAdmin from './Pages/Auth/RequireAdmin';
+import useAdmin from './Pages/hooks/useAdmin';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from './Firebase/Firebase';
 
 
 function App() {
+
+  const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
 
   return (
     
@@ -41,32 +47,42 @@ function App() {
 
                   <Route path='dashboard' element={ <RequireAuth> <Dashboard /> </RequireAuth> } > 
                       <Route index element={<MyProfile /> } > </Route>
-                      <Route path='addReview' element={<AddReview />} > </Route>
-                      <Route path='myOrders' element={<MyOrders />} > </Route>
+                    { !admin && <Route path='addReview' element={<AddReview />} > </Route> }
+                    { !admin &&  <Route path='myOrders' element={<MyOrders />} > </Route> }
                       
-                      <Route path='manageOrder' element={
-                        <RequireAdmin>
-                            <ManageOrder />
-                        </RequireAdmin>
-                      } > </Route>
+                    {  admin &&  <Route path='manageOrder' element={
+                          <RequireAdmin>
+                              <ManageOrder />
+                          </RequireAdmin>
+                        } > </Route>
+                    }
                       
-                      <Route path='addProduct' element={
+                   { admin &&
+                    <Route path='addProduct' element={
+                            <RequireAdmin>
+                                <AddProduct />
+                            </RequireAdmin>
+                        } > 
+                      </Route>
+                    }
+
+
+                    {  admin && <Route path='makeAdmin' element={
                           <RequireAdmin>
                               <MakeAdmin />
                           </RequireAdmin>
-                      } > </Route>
+                        } > 
+                      </Route>
+                    }
 
-                      <Route path='makeAdmin' element={
+                      { admin &&
+                          <Route path='manageProduct' element={
                           <RequireAdmin>
-                              <MakeAdmin />
+                              <ManageProduct />
                           </RequireAdmin>
-                      } > </Route>
-
-                      <Route path='manageProduct' element={
-                        <RequireAdmin>
-                            <ManageProduct />
-                        </RequireAdmin>
-                      } > </Route>
+                          } > 
+                        </Route>
+                      }
 
                   </Route>
 

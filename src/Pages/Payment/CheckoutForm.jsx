@@ -16,7 +16,7 @@ const CheckoutForm = ({tools}) => {
 
     useEffect(()=> {
 
-        const url = 'http://localhost:5000/create-payment-intent';
+        const url = 'https://discretesoft-hardware.herokuapp.com/create-payment-intent';
         const getSecret = async()=> {
             const {data} = await axiosPrivate.post(url, {totalPrice})
             if(data?.clientSecret){
@@ -83,7 +83,7 @@ const CheckoutForm = ({tools}) => {
                 transactionId: paymentIntent?.id
             };
 
-            const url = `http://localhost:5000/booking/${_id}`;
+            const url = `https://discretesoft-hardware.herokuapp.com/booking/${_id}`;
 
             const patchPayment = async()=> {
                 const {data} = await axiosPrivate.patch(url, payment );

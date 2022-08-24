@@ -7,7 +7,7 @@ import ToolsRow from './ToolsRow';
 
 const HomeTools = () => {
 
-    const url = 'http://localhost:5000/services'
+    const url = 'https://discretesoft-hardware.herokuapp.com/services'
     const {data:tools, isLoading} = useQuery(['tools'], async()=> await axiosPrivate.get(url));
 
     if(isLoading){

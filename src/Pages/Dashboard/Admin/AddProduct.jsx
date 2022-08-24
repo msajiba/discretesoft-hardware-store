@@ -33,7 +33,7 @@ const AddProduct = () => {
                 img, name, minimum, available, price, description
             };
 
-            const url = 'http://localhost:5000/product'
+            const url = 'https://discretesoft-hardware.herokuapp.com/product'
             const response = await axiosPrivate.post(url, productInfo);
 
             if(response?.data?.acknowledged){

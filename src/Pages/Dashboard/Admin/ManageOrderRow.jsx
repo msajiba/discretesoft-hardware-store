@@ -6,7 +6,7 @@ const ManageOrderRow = ({order, index, setModalOrder,refetch }) => {
 const {email, inputQuantity, userName, totalPrice, name, phone, paid, status, _id} = order;
 
     const handlePendingStatus = async() => {
-        const url = `http://localhost:5000/payment-complete/${_id}`
+        const url = `https://discretesoft-hardware.herokuapp.com/payment-complete/${_id}`
         const {data} = await axiosPrivate.patch(url);
     };
     

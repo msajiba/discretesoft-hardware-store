@@ -12,7 +12,7 @@ const MyProfile = () => {
     const [user] = useAuthState(auth);
     const email = user?.email;
 
-    const url = `http://localhost:5000/profile/${email}`
+    const url = `https://discretesoft-hardware.herokuapp.com/profile/${email}`
     const {data:profile, isLoading, refetch} = useQuery(['profile', user], async()=> await axiosPrivate.get(url))
     
     if(isLoading){
@@ -33,7 +33,7 @@ const MyProfile = () => {
 
         const profileInfo = {name, email, education, location, phone, linkdin};
 
-        const url = `http://localhost:5000/profile/${email}`
+        const url = `https://discretesoft-hardware.herokuapp.com/profile/${email}`
         const {data} = await axiosPrivate.put(url, profileInfo)
 
         if(data?.upsertedCount ===1){

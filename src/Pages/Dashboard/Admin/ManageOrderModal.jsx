@@ -8,7 +8,7 @@ const ManageOrderModal = ({modalOrder, refetch, setModalOrder}) => {
 
     const deleteOrder = async() =>{
 
-        const url = `http://localhost:5000/admin/order/${_id}`;
+        const url = `https://discretesoft-hardware.herokuapp.com/admin/order/${_id}`;
         const {data} = await axiosPrivate.delete(url);
         if(data.acknowledged){
             toast.success('Product delete successfully');

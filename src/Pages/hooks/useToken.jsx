@@ -13,7 +13,7 @@ const useToken = user => {
  
         if(email){
 
-            const url = `http://localhost:5000/user/${email}`;
+            const url = `https://discretesoft-hardware.herokuapp.com/user/${email}`;
             fetch(url, { 
                 method : 'PUT',
                 headers: {

@@ -9,7 +9,7 @@ const OrderDeleteModal = ({showDelete, setShowDelete, refetch}) => {
 
     const handleDeleteOrder = async(id) => {
         
-        const url = `http://localhost:5000/order/${id}`
+        const url = `https://discretesoft-hardware.herokuapp.com/order/${id}`
         
         const {data} = await axiosPrivate.delete(url);
 
