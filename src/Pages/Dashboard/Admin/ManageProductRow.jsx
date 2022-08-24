@@ -8,8 +8,8 @@ const ManageProductRow = ({product, index, setProduct}) => {
         <tr>
             <th> {index +1} </th>
             <td>
-                <div class="avatar">
-                    <div class="w-16 rounded-full">
+                <div className="avatar">
+                    <div className="w-16 rounded-full">
                         <img src={img} />
                     </div>
                 </div>
@@ -18,7 +18,7 @@ const ManageProductRow = ({product, index, setProduct}) => {
             <td> {available} </td>
             <td> ${price} </td>
             <td> 
-                <label onClick={()=> setProduct(product)} for="manage-product-modal" className='btn btn-xs btn-error'> Delete </label>
+                <label onClick={()=> setProduct(product)} htmlFor="manage-product-modal" className='btn btn-xs btn-error'> Delete </label>
             </td>
         </tr>
     );

@@ -2,8 +2,9 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../Firebase/Firebase';
 import {useLocation, Navigate} from 'react-router-dom';
-import Loader from '../Shared/Loader';
 import useAdmin from '../hooks/useAdmin';
+import Loader from '../Shared/Loader';
+import { signOut } from 'firebase/auth';
 
 const RequireAdmin = ({children}) => {
 
@@ -16,6 +17,7 @@ const RequireAdmin = ({children}) => {
     };
 
     if(!user || !admin) {
+        signOut(auth);
         return <Navigate to="/login" state={{ from: location }} replace />;
     };
 

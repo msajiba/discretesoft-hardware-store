@@ -19,8 +19,8 @@ const ManageProduct = () => {
 
     return (
 
-        <div class="overflow-x-auto">
-            <table class="table w-full">
+        <div className="overflow-x-auto">
+            <table className="table w-full">
             
             <thead>
                 <tr>
@@ -35,7 +35,12 @@ const ManageProduct = () => {
             <tbody>
 
                 {
-                    products.data.map((product,index)=> <ManageProductRow setProduct={setProduct} product={product} index={index}> </ManageProductRow> )
+                    products.data.map((product,index)=> <ManageProductRow 
+                                                            key={index}
+                                                            setProduct={setProduct}
+                                                            product={product} 
+                                                            index={index}> 
+                                                        </ManageProductRow> )
                 }
 
             </tbody>

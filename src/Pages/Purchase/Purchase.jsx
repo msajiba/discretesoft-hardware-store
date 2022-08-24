@@ -113,7 +113,7 @@ const Purchase = () => {
                                 
                                 <div> 
                                     Quantity <span> 
-                                                <input type="number" name='inputQuantity' placeholder={minimum} className='w-20 h-6 text-primary focus:outline-none input input-bordered border-yellow-500' /> 
+                                                <input type="number" name='inputQuantity' defaultValue={minimum} className='w-20 h-6 text-primary focus:outline-none input input-bordered border-yellow-500' /> 
                                                 {quantityError && <p className='text-red-500'> {quantityError} </p> }
                                             </span> 
                                 </div>

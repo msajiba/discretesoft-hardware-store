@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 const useAdmin = user => {
 
     const [admin, setAdmin] = useState(false);
-    const [adminLoading, setAdminLoading] = useState(false);
+
+    const [adminLoading, setAdminLoading] = useState(true);
     const email = user?.email;
 
     const url = `http://localhost:5000/admin/${email}`
@@ -15,9 +16,11 @@ const useAdmin = user => {
         .then(res=> res.json())
         .then(data=> {
             setAdmin(data)
-            setAdminLoading(true);
+            if(data){
+                setAdminLoading(false);
+            }
         })
-    }, [user])
+    }, [user]);
 
 
     return [admin, adminLoading]

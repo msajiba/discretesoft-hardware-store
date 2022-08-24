@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {useQuery} from 'react-query';
 import axios from 'axios';
 import Loader from '../../Shared/Loader';
@@ -6,14 +6,16 @@ import ManageOrderRow from './ManageOrderRow';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../Firebase/Firebase';
 import axiosPrivate from '../../api/axiosPrivate';
+import ManageOrderModal from './ManageOrderModal';
 
 const ManageOrder = () => {
 
     const [user] = useAuthState(auth);
     const email = user?.email;
+    const [modalOrder, setModalOrder] = useState(null);
 
     const url = `http://localhost:5000/allOrder?email=${email}`;
-    const {data:orders, isLoading} = useQuery(['orders'], async()=> await axiosPrivate.get(url));
+    const {data:orders, isLoading, refetch} = useQuery(['orders'], async()=> await axiosPrivate.get(url));
 
     if(isLoading){
         return <Loader> </Loader>
@@ -32,15 +34,31 @@ const ManageOrder = () => {
                         <th> Phone </th>
                         <th> Quantity </th>
                         <th> Price </th>
+                        <th> Payment Status </th>
+                        <th> Action </th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        orders?.data.map((order, index) => <ManageOrderRow index={index} key={order._id} order={order}> </ManageOrderRow>)
+                        orders?.data.map((order, index) => <ManageOrderRow 
+                                                                setModalOrder={setModalOrder}
+                                                                index={index}
+                                                                key={order._id} 
+                                                                order={order}> 
+                                                        </ManageOrderRow>)
                     }
                     
                 </tbody>
             </table>
+
+        {
+            modalOrder && <ManageOrderModal
+                            modalOrder={modalOrder}
+                            refetch={refetch} 
+                            setModalOrder={setModalOrder}
+                         />
+        }
+
       </div>
 
     );

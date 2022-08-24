@@ -4,7 +4,8 @@ import { toast } from 'react-toastify';
 import axiosPrivate from '../api/axiosPrivate';
 
 const OrderDeleteModal = ({showDelete, setShowDelete, refetch}) => {
-    const {_id, name, useName} = showDelete;
+
+    const {_id, name} = showDelete;
 
     const handleDeleteOrder = async(id) => {
         

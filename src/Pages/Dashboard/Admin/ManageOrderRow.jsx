@@ -1,8 +1,15 @@
 import React from 'react';
+import axiosPrivate from '../../api/axiosPrivate';
 
-const ManageOrderRow = ({order, index}) => {
+const ManageOrderRow = ({order, index, setModalOrder, }) => {
 
-const {email, inputQuantity, userName, totalPrice, name, phone} = order;
+const {email, inputQuantity, userName, totalPrice, name, phone, paid, status, _id} = order;
+
+    const handlePendingStatus = async() => {
+        const url = `http://localhost:5000/payment-complete/${_id}`
+        const {data} = await axiosPrivate.patch(url);
+    };
+    
 
     return (
         <tr>
@@ -13,6 +20,25 @@ const {email, inputQuantity, userName, totalPrice, name, phone} = order;
             <td> {phone} </td>
             <td> {inputQuantity} </td>
             <td> ${totalPrice}.00 </td>
+
+            <td>
+                {!paid && <button onClick className='btn btn-info btn-xs'> unpaid</button> }
+                { (paid && status) && <button className='btn btn-success btn-xs'> Shipped </button> }
+                { (paid && !status) &&  <button onClick={handlePendingStatus} className='btn btn-success btn-xs'> Pending </button> }
+            </td>
+
+            <td>
+                { 
+                    !paid && 
+                        <label 
+                            onClick={()=> setModalOrder(order)}
+                            htmlFor="manage-order-modal" 
+                            className='btn btn-error btn-xs'>
+                                 Delete 
+                        </label>
+                }
+            </td>
+
          </tr>
     );
 };

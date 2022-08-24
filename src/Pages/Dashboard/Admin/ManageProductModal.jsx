@@ -21,21 +21,21 @@ const ManageProductModal = ({product, setProduct, refetch}) => {
     return (
         <>
             
-            <input type="checkbox" id="manage-product-modal" class="modal-toggle" />
-            <div class="modal">
-                <div class="modal-box relative text-center">
+            <input type="checkbox" id="manage-product-modal" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box relative text-center">
                 
-                    <div class="avatar">
-                        <div class="w-20 rounded-full">
+                    <div className="avatar">
+                        <div className="w-20 rounded-full">
                             <img src={img} />
                         </div>
                     </div>
 
-                    <h3 class="text-lg font-bold"> Are you sure delete <span className='text-secondary'> {name} </span> ? </h3>
+                    <h3 className="text-lg font-bold"> Are you sure delete <span className='text-secondary'> {name} </span> ? </h3>
                    
                     <div className='text-end mt-5'>
                         <button onClick={deleteProduct} className='btn btn-xs btn-error mx-3 '> Delete </button>
-                        <label for="manage-product-modal" class="btn btn-xs "> Cancel </label>
+                        <label htmlFor="manage-product-modal" className="btn btn-xs "> Cancel </label>
                     </div>
 
                 </div>

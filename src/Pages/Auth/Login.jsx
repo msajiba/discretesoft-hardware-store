@@ -41,12 +41,12 @@ const Login = () => {
         errors = error?.message || gError?.message || resetError?.message;
     };
 
+  
     if(token){
         navigate(from, { replace: true });
     };
 
    
-
     const onSubmit = async(data) => {
         const email = data.email;
         const password = data.password;
