@@ -18,4 +18,5 @@
 - React hook form
 - React tostify
 - Hero Icon
+- Stripe Js
 

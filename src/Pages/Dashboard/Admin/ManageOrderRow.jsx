@@ -1,7 +1,7 @@
 import React from 'react';
 import axiosPrivate from '../../api/axiosPrivate';
 
-const ManageOrderRow = ({order, index, setModalOrder, }) => {
+const ManageOrderRow = ({order, index, setModalOrder,refetch }) => {
 
 const {email, inputQuantity, userName, totalPrice, name, phone, paid, status, _id} = order;
 
@@ -9,6 +9,8 @@ const {email, inputQuantity, userName, totalPrice, name, phone, paid, status, _i
         const url = `http://localhost:5000/payment-complete/${_id}`
         const {data} = await axiosPrivate.patch(url);
     };
+    
+    refetch();
     
 
     return (

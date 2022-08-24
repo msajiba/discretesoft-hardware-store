@@ -43,6 +43,7 @@ const ManageOrder = () => {
                         orders?.data.map((order, index) => <ManageOrderRow 
                                                                 setModalOrder={setModalOrder}
                                                                 index={index}
+                                                                refetch={refetch}
                                                                 key={order._id} 
                                                                 order={order}> 
                                                         </ManageOrderRow>)
