@@ -18,7 +18,7 @@ const HomeTools = () => {
 
 
         <>
-            <h3 className="text-3xl my-28 text-center text-secondary hover:text-primary"> NEW ARRIVALS  </h3>
+            <h3 data-aos="fade-up" data-aos-duration="1000" className="text-3xl my-28 text-center text-secondary hover:text-primary"> NEW ARRIVALS  </h3>
             <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-5 px-20 ">
 
                 {

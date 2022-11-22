@@ -70,7 +70,7 @@ const Purchase = () => {
             <div className="hero min-h-screen bg-base-200">
 
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="text-center lg:text-center">
+                    <div data-aos-delay="1500" data-aos="zoom-in-left" data-aos-duration="2000" className="text-center lg:text-center">
                         <img src={img}  className='mask mask-decagon w-36 mx-auto' alt="img" />
                         <h1 className="text-4xl font-bold text-secondary"> {name} </h1>
                         <p className="py-2"> Price :  ${price} <span> (per pics) </span> </p>
@@ -79,7 +79,7 @@ const Purchase = () => {
                         <p className='pb-10'>{description} </p>
                     </div>
 
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div data-aos="zoom-in-right" data-aos-duration="2000" className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
 
                         <div className="card-body">
                             <form onSubmit={confirmOrder}>

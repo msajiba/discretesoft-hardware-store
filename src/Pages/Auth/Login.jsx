@@ -66,7 +66,7 @@ const Login = () => {
                 <div className="hero min-h-screen bg-base-200">
                     <div className="hero-content flex-col justify-center lg:flex-row-reverse w-full">
 
-                        <div className="text-center lg:text-center ">
+                        <div data-aos-delay="1500" data-aos="zoom-in-left" data-aos-duration="2000" className="text-center lg:text-center ">
                             <h1 className="text-5xl font-bold">Login now!</h1>
                             <button
                                  onClick={()=> signInWithGoogle()}
@@ -75,7 +75,7 @@ const Login = () => {
 
                         <div className="divider lg:divider-horizontal">OR</div> 
       
-                        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                        <div data-aos="zoom-in-right" data-aos-duration="2000" className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                             <div className="card-body">
                                 <h3 className="text-2xl text-primary text-center"> Please Login </h3>
 

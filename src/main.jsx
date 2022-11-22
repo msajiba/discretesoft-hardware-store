@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 
+
 const queryClient = new QueryClient();
 
 

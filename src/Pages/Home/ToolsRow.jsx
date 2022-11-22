@@ -9,7 +9,7 @@ const ToolsRow = ({tool}) => {
 
     return (
 
-        <div className="card bg-base-100 hover:shadow-2xl hover:shadow-gray-500 rounded-2xl">
+        <div data-aos-delay="500" data-aos-duration="1000"  data-aos="zoom-out" className="card bg-base-100 hover:shadow-2xl hover:shadow-gray-500 rounded-2xl">
             <figure className="rounded-lg">
                 <img className='h-52 w-full rounded-xl' src={img} alt="Shoes"  />
             </figure>
